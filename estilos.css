@@ -1,0 +1,211 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-dark: #121212;       /* Fondo oscuro de la interfaz GFL */
+  --bg-panel: #1a1a1a;      /* Paneles de datos */
+  --bg-input: #0d0d0d;
+  --text-main: #b3b3b3;     /* Gris de los textos secundarios de la wiki */
+  --brand-color: #f3a804;   /* El Amarillo/Ámbar exacto del logo de GFL */
+  --gfl-line: #262626;
+  --border-color: #2a2a2a;  
+  --font-main: 'Rajdhani', sans-serif;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  min-height: 100vh;
+  letter-spacing: 0.02em;
+}
+
+.top-status-bar {
+  background: var(--brand-color);
+  color: #000;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 6px 5%;
+  text-align: center;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* NAV ESTILO GIRLS' FRONTLINE */
+nav {
+  background: #161616;
+  border-bottom: 3px solid var(--brand-color);
+  padding: 0 5%;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 80px;
+  /* Fondo sutil con líneas diagonales tácticas como la wiki */
+  background-image: linear-gradient(135deg, #1a1a1a 25%, transparent 25%, transparent 50%, #1a1a1a 50%, #1a1a1a 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.logo-area { display: flex; flex-direction: column; }
+.logo { font-size: 1.7rem; font-weight: 700; color: #fff; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px; }
+.logo::after { content: ' // IOP WIKI'; font-size: 0.75rem; color: var(--brand-color); margin-left: 5px; }
+.slogan { font-size: 0.75rem; color: var(--brand-color); opacity: 0.8; margin-top: -2px; font-weight: 600; text-transform: uppercase; }
+
+.cart-btn {
+  background: #222; color: var(--brand-color); border: 1px solid var(--brand-color);
+  padding: 0.5rem 1.2rem; font-size: 0.9rem; cursor: pointer; font-weight: 600; transition: all 0.2s;
+  text-transform: uppercase;
+}
+.cart-btn:hover { background: var(--brand-color); color: #000; }
+
+/* SECCIÓN SOLICITUDES */
+.request-section {
+  margin: 25px 5% 10px 5%;
+  background: var(--bg-panel);
+  border-left: 4px solid var(--brand-color);
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--brand-color);
+}
+.section-title-sub { color: #fff; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.2rem; text-transform: uppercase; }
+.section-desc { font-size: 0.9rem; margin-bottom: 1rem; color: #888; }
+.request-box { display: flex; gap: 10px; }
+#requestText {
+  flex: 1; background: var(--bg-input); border: 1px solid var(--border-color);
+  padding: 12px; color: #fff; font-size: 0.95rem;
+}
+#requestText:focus { border-color: var(--brand-color); outline: none; }
+.request-section button {
+  background: var(--brand-color); color: #000; border: none;
+  font-weight: 700; padding: 0 24px; cursor: pointer; text-transform: uppercase;
+}
+.terminal-log { margin-top: 10px; font-size: 0.9rem; font-weight: 600; }
+
+/* BUSCADOR */
+.search-section { padding: 10px 5%; }
+.search-wrapper { background: var(--bg-input); border: 1px solid var(--border-color); }
+#searchInput {
+  width: 100%; background: transparent; border: none; padding: 14px;
+  color: #fff; font-size: 1rem;
+}
+#searchInput:focus { outline: none; }
+
+/* CATEGORÍAS */
+.cat-grid { display: flex; gap: 0.5rem; flex-wrap: wrap; padding: 10px 5% 20px; }
+.cat-pill {
+  background: #1a1a1a; color: #fff; border: 1px solid var(--border-color);
+  padding: 0.6rem 1.2rem; font-size: 0.9rem; cursor: pointer; transition: all 0.2s;
+  text-transform: uppercase;
+}
+.cat-pill:hover, .cat-pill.active {
+  background: var(--brand-color); color: #000; border-color: var(--brand-color); font-weight: 700;
+}
+
+/* PRODUCTOS GRID */
+.products { padding: 10px 5% 60px; }
+.products-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+.products-header h2 { font-size: 1.4rem; font-weight: 600; color: #fff; text-transform: uppercase; border-left: 3px solid var(--brand-color); padding-left: 10px; }
+#prodCount { font-size: 0.9rem; color: var(--brand-color); font-weight: bold; }
+
+.products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
+
+/* PRODUCT CARDS */
+.product-card {
+  background: var(--bg-panel); border: 1px solid var(--border-color);
+  transition: transform 0.2s, border-color 0.2s;
+}
+.product-card:hover { border-color: var(--brand-color); }
+.product-img {
+  background: #0d0d0d; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center;
+  position: relative; border-bottom: 1px solid var(--border-color);
+}
+.product-img img { width: 100%; height: 100%; object-fit: cover; }
+.status-tag {
+  position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.85);
+  color: var(--brand-color); border: 1px solid var(--brand-color); font-size: 0.75rem; padding: 2px 8px; font-weight: bold; text-transform: uppercase;
+}
+
+.product-body { padding: 1.2rem; }
+.product-cat { font-size: 0.75rem; color: #777; margin-bottom: 0.4rem; font-weight: 600; text-transform: uppercase; }
+.product-name { font-size: 1.15rem; font-weight: 600; color: #fff; line-height: 1.3; }
+.product-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 1.2rem; }
+.product-price { font-size: 1.25rem; color: var(--brand-color); font-weight: 700; }
+.add-btn {
+  background: transparent; color: #fff; border: 1px solid var(--border-color);
+  padding: 0.5rem 1rem; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; text-transform: uppercase;
+}
+.add-btn:hover { background: var(--brand-color); color: #000; border-color: var(--brand-color); font-weight: bold; }
+
+/* CARRITO OVERLAY */
+.cart-overlay {
+  position: fixed; top: 0; right: -420px; width: 400px; height: 100%;
+  background: var(--bg-panel); z-index: 200; border-left: 2px solid var(--brand-color);
+  transition: right .3s ease; display: flex; flex-direction: column;
+}
+.cart-overlay.open { right: 0; }
+.cart-header { padding: 1.5rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
+.cart-header h3 { text-transform: uppercase; color: #fff; letter-spacing: 1px; }
+.close-cart { background: none; border: none; color: #ff4d4d; cursor: pointer; font-size: 0.95rem; font-weight: bold; }
+.cart-items { flex: 1; overflow-y: auto; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+.cart-item { display: flex; gap: 1rem; align-items: center; background: var(--bg-dark); padding: 0.8rem; border: 1px solid var(--border-color); }
+.cart-item-img { width: 50px; height: 50px; overflow: hidden; border: 1px solid var(--border-color); }
+.cart-item-img img { width: 100%; height: 100%; object-fit: cover; }
+.cart-item-info p { font-size: 0.95rem; color: #fff; font-weight: 600; }
+.cart-item-info span { font-size: 0.8rem; color: #666; }
+.cart-item-price { color: var(--brand-color); font-weight: 600; }
+.remove-item { background: none; border: none; color: #ff4d4d; cursor: pointer; font-size: 1rem; }
+.cart-empty { text-align: center; padding: 3rem 1rem; color: #555; font-size: 1.1rem; text-transform: uppercase; }
+.cart-footer { padding: 1.5rem; border-top: 1px solid var(--border-color); background: #111; }
+.cart-total { display: flex; justify-content: space-between; margin-bottom: 1.2rem; font-size: 1.1rem; text-transform: uppercase; color: #fff; }
+.checkout-btn {
+  width: 100%; background: var(--brand-color); color: #000; border: none;
+  padding: 14px; font-size: 1rem; font-weight: 700; cursor: pointer; text-transform: uppercase;
+}
+
+/* MODAL DEL TROLLEO */
+.fake-modal-backdrop {
+  display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 500;
+  align-items: center; justify-content: center; padding: 20px;
+}
+.fake-modal-backdrop.show { display: flex; }
+.fake-modal {
+  background: var(--bg-panel); border: 2px solid var(--brand-color); width: 100%; max-width: 420px;
+  padding: 2rem; text-align: center;
+}
+.modal-alert-header { background: var(--brand-color); color: #000; padding: 8px; font-weight: 700; font-size: 1.1rem; margin-bottom: 1.5rem; text-transform: uppercase; }
+.modal-alert-body { color: #fff; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1.5rem; }
+.blink-text { color: var(--brand-color); font-weight: bold; margin-bottom: 12px; font-size: 1.2rem; text-transform: uppercase; }
+.fake-modal button { background: var(--bg-dark); border: 1px solid var(--border-color); color: #fff; padding: 10px 24px; cursor: pointer; text-transform: uppercase; }
+.fake-modal button:hover { background: #fff; color: #000; }
+
+.cart-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 150; }
+.cart-backdrop.open { display: block; }
+.toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(80px); background: #1f1f1f; color: var(--brand-color); padding: 0.6rem 1.5rem; font-size: 0.9rem; font-weight: 600; border: 1px solid var(--brand-color); opacity: 0; transition: all .3s; z-index: 300; }
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+footer { text-align: center; padding: 30px; font-size: 0.85rem; color: #555; border-top: 1px solid var(--border-color); margin-top: 40px; text-transform: uppercase; }
+
+@media(max-width: 768px) { .cart-overlay { width: 100%; right: -100%; } }
+/* Busca la regla anterior de footer y reemplázala por esta estructura limpia */
+footer {
+  text-align: center;
+  padding: 40px 5% 30px 5%;
+  border-top: 1px solid var(--border-color);
+  margin-top: 40px;
+  background: #141414;
+}
+
+.footer-status-log {
+  color: var(--brand-color);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  padding: 10px;
+  background: rgba(243, 168, 4, 0.05);
+  border: 1px dashed rgba(243, 168, 4, 0.3);
+  display: inline-block;
+  max-width: 90%;
+}
+
+.footer-copyright {
+  font-size: 0.8rem;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}

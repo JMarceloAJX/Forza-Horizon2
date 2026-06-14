@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Forza tus horizontes — IOP Wiki Protocol</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="estilos.css"/>
+</head>
+<body>
+  
+  <nav>
+    <div class="logo-area">
+      <a class="logo" href="#">Forza tus horizontes</a>
+      <span class="slogan">Envíos a todo lugar en todo momento</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#productos">Catálogo Oficial</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="cart-btn" onclick="toggleCart()">
+        Carrito de Compras (<span id="cartCount">0</span>)
+      </button>
+    </div>
+  </nav>
+
+  <section class="request-section">
+    <div class="section-title-sub">¿No encuentras un producto específico?</div>
+    <p class="section-desc">Escribe la marca o modelo tecnológico que buscas y generaremos una orden de importación inmediata:</p>
+    <div class="request-box">
+      <input type="text" id="requestText" placeholder="Ej: PlayStation 5 Pro, Laptop ASUS ROG Strix..." />
+      <button onclick="sendRequest()">Enviar Solicitud</button>
+    </div>
+    <p id="requestResponse" class="terminal-log"></p>
+  </section>
+
+  <section class="search-section">
+    <div class="search-wrapper">
+      <input type="text" id="searchInput" placeholder="Buscar productos por nombre, marcas, vehículos, armamento o especificación..." onkeyup="searchProducts()">
+    </div>
+  </section>
+
+  <div class="cat-grid">
+    <button class="cat-pill active" onclick="filterCat(this,'todos')">Todos los Artículos</button>
+    <button class="cat-pill" onclick="filterCat(this,'valor')">Artículos de Gran Valor</button>
+    <button class="cat-pill" onclick="filterCat(this,'vinilos')">Colecciones de Vinilos</button>
+    <button class="cat-pill" onclick="filterCat(this,'instrumentos')">Equipos e Instrumentos</button>
+    <button class="cat-pill" onclick="filterCat(this,'computadora')">Hardware y Componentes</button>
+  </div>
+
+  <section class="products" id="productos">
+    <div class="products-header">
+      <h2>Productos destacados en inventario</h2>
+      <span id="prodCount">0 artículos cargados</span>
+    </div>
+    <div class="products-grid" id="productsGrid"></div>
+  </section>
+
+  <footer>
+    <div class="footer-status-log">
+      CONEXIÓN CIFRADA TLS 1.3 // Estos artículos están aprobados y la app está en fase beta, gracias por su preferencia.
+    </div>
+    <p class="footer-copyright">Forza tus horizontes International Trade S.A. © 2026 · App en Fase Beta Certificada bajo Estándar IOP</p>
+  </footer>
+
+  <div class="cart-backdrop" id="cartBackdrop" onclick="toggleCart()"></div>
+  <div class="cart-overlay" id="cartOverlay">
+    <div class="cart-header">
+      <h3>Resumen del Pedido</h3>
+      <button class="close-cart" onclick="toggleCart()">Cerrar [✕]</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-total">
+        <span>Subtotal Estimado:</span>
+        <strong id="cartTotal">$0</strong>
+      </div>
+      <p style="font-size: 0.75rem; color: #666; margin-bottom: 10px; line-height: 1.2;">* El sistema seleccionará automáticamente el canal de pago activo más rápido registrado en su terminal móvil o PC.</p>
+      <button class="checkout-btn" onclick="triggerFakePayment()">PROCEDER CON EL PAGO SEGURO →</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <div class="fake-modal-backdrop" id="fakeModalBackdrop">
+    <div class="fake-modal">
+      <div class="modal-alert-header">TRANSACCIÓN PROCESADA</div>
+      <div class="modal-alert-body">
+        <p class="blink-text">✓ OPERACIÓN EXITOSA</p>
+        <p id="fakeModalMessage">Procesando pasarela...</p>
+        <p style="margin-top: 20px; font-size: 0.8rem; color: #555;">[Fase Beta]: Simulación de entorno e-commerce completada de forma correcta.</p>
+      </div>
+      <button onclick="closeFakeModal()">Finalizar y Limpiar Log</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
