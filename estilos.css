@@ -209,3 +209,379 @@ footer {
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
+/* ==========================================================================
+   PANTALLA DE INTRO Y CARGA ESTILO GIRLS' FRONTLINE 
+   ========================================================================== */
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  background-color: #0d0d0d;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease, visibility 0.5s;
+  background-image: linear-gradient(135deg, #121212 25%, transparent 25%, transparent 50%, #121212 50%, #121212 75%, transparent 75%, transparent);
+  background-size: 60px 60px;
+  /* DISEÑO DIVIDIDO (TEXTO A LA IZQUIERDA, LOGO A LA DERECHA) */
+.layout-split {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  max-width: 750px; /* Ampliamos el ancho para que quepa el logo de forma elegante */
+  width: 95%;
+  text-align: left; /* Alineado táctico a la izquierda */
+}
+
+.splash-left {
+  flex: 1;
+}
+
+.splash-right {
+  flex: 0 0 200px; /* Espacio fijo reservado para el logo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* LOGO ANIMADO FLOTANTE CONSTANTE */
+.gfl-floating-logo {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+  border: 1px solid #2a2a2a;
+  
+  /* Lógica de la animación: 4 segundos de duración, bucle infinito, aceleración suave al inicio y fin */
+  animation: floatSuave 4s ease-in-out infinite; 
+}
+
+/* DECLARACIÓN DEL MOVIMIENTO ARRIBA Y ABAJO */
+@keyframes floatSuave {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px); /* Sube ligeramente 12 píxeles a la mitad del ciclo */
+  }
+  100% {
+    transform: translateY(0px); /* Regresa suavemente a su posición original */
+  }
+}
+
+/* AJUSTE PARA PANTALLAS MÓVILES */
+@media (max-width: 600px) {
+  .layout-split {
+    flex-direction: column-reverse; /* En celulares pone el logo arriba del texto automáticamente */
+    text-align: center;
+    gap: 20px;
+  }
+  .splash-right {
+    max-width: 130px;
+  }
+}
+}
+
+.splash-content {
+  text-align: center;
+  width: 90%;
+  max-width: 500px;
+  padding: 30px;
+  background: #161616;
+  border: 1px solid #2a2a2a;
+  border-top: 4px solid var(--brand-color);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.gfl-logo-box h1 {
+  font-size: 2.2rem;
+  color: #fff;
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.sub-log {
+  font-size: 0.8rem;
+  color: var(--brand-color);
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 35px;
+}
+
+/* Botón de Entrada */
+.splash-btn {
+  background: transparent;
+  color: var(--brand-color);
+  border: 2px solid var(--brand-color);
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+.splash-btn:hover {
+  background: var(--brand-color);
+  color: #000;
+  box-shadow: 0 0 15px rgba(243, 168, 4, 0.4);
+}
+
+/* Barra de carga */
+.progress-container {
+  margin-top: 20px;
+}
+
+.progress-bar-wrapper {
+  width: 100%;
+  height: 8px;
+  background: #0d0d0d;
+  border: 1px solid #2a2a2a;
+  padding: 1px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--brand-color);
+  transition: width 0.1s linear;
+}
+
+.loading-status-text {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: #888;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+#loadingPercentage {
+  color: var(--brand-color);
+}
+/* ==========================================================================
+   ESTRUCTURA CORREGIDA: MÁS ESPACIO PARA EL LOGO (OCUPA EL DOBLE)
+   ========================================================================== */
+.layout-split {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 900px; /* Ampliamos el contenedor para que quepan holgadamente ambos lados */
+  width: 95%;
+  text-align: left;
+}
+
+.splash-left {
+  flex: 1.2; /* El texto mantiene su espacio controlado */
+}
+
+.splash-right {
+  flex: 1; /* ¡Aquí está el cambio! Ahora el lado derecho tiene casi el mismo peso que el izquierdo, ocupando el doble de antes */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* LOGO AMPLIADO CON EFECTO DE FUSIÓN */
+.gfl-floating-logo {
+  width: 100%;
+  max-width: 320px; /* Incrementamos el tamaño máximo para que se vea gigante y llene el espacio */
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+  border: 1px solid #2a2a2a;
+  
+  /* Mantiene el truco para mimetizar los bordes blancos de la foto con tu fondo oscuro */
+  mix-blend-mode: screen; 
+  
+  /* Animación suave arriba y abajo */
+  animation: floatSuave 4s ease-in-out infinite; 
+}
+
+/* DECLARACIÓN DEL MOVIMIENTO ARRIBA Y ABAJO */
+@keyframes floatSuave {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px); /* Sube un toque más para acompañar el nuevo tamaño */
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* AJUSTE PARA CELULARES (Se apilan uno abajo del otro para que no se rompa en pantallas chicas) */
+@media (max-width: 768px) {
+  .layout-split {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 30px;
+  }
+  .gfl-floating-logo {
+    max-width: 220px;
+  }
+}
+/* ==========================================================================
+   INTERFAZ TÁCTICA DEFINITIVA: CAJA IZQUIERDA Y LOGO REGULABLE EN GRANDE
+   ========================================================================== */
+
+/* Contenedor total de borde a borde */
+.interface-container {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  gap: 0;
+  overflow: hidden;
+}
+
+/* PANEL IZQUIERDO: FONDO GENERAL OSCURO */
+.login-panel {
+  flex: 52;
+  background: rgba(12, 12, 12, 0.96);
+  padding: 0 5% 0 8%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 1;
+}
+
+/* RECUADRO AMARILLO INTERNO (TEXTOS COMODOS) */
+.gfl-logo-box {
+  border: 3px solid #ffb300;
+  padding: 45px 40px;
+  background: rgba(16, 16, 16, 0.7);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+  max-width: 500px;
+  width: 100%;
+}
+
+/* Título imponente */
+.gfl-logo-box h1 {
+  font-size: 2.5rem; /* Más grande y legible */
+  margin-top: 0;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+  color: #ffffff;
+}
+
+.sub-log {
+  font-size: 0.85rem;
+  margin-bottom: 30px;
+  color: #ffb300;
+}
+
+/* PANEL DERECHO: LA GRAN FLECHA AMARILLA BASE */
+.logo-display-panel {
+  flex: 48;
+  background: #ffb300; /* Color amarillo de la franja */
+  position: relative;
+  z-index: 2;
+  
+  /* Corte en punta de flecha limpia (ajustada para que no sea esquina a esquina) */
+  clip-path: polygon(40% 0%, 100% 0%, 100% 100%, 40% 100%, 0% 50%);
+  margin-left: -12vw; 
+}
+
+/* RECUADRO INTERNO OSCURO: Hace que la franja amarilla se vea bien gruesa */
+.logo-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0f0f0f; /* El fondo negro de la sección del logo */
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 20%; /* Centra el escudo tirándolo un poco a la derecha */
+
+  /* Mismo corte de flecha */
+  clip-path: polygon(40% 0%, 100% 0%, 100% 100%, 40% 100%, 0% 50%);
+  
+  /* Ajuste de escala: Al achicar el fondo oscuro interno, la franja amarilla se vuelve GRUESA */
+  transform: scaleX(0.94) scaleY(0.97);
+  transform-origin: right center;
+}
+
+/* EL EMBLEMA: ¡AQUÍ REGULAS EL TAMANO DE LA FOTO AL MILÍMETRO! */
+.gfl-tactical-logo {
+  /* 🛠️ MODIFICA ESTE PORCENTAJE PARA CONTROLAR EL TAMANO:
+     Al 80% se va a ver gigante llenando el espacio pero sin salirse de los bordes.
+     Si lo notas muy grande, bájalo a 70% o 75%. Si lo quieres inmenso, súbelo a 90%. */
+  width: 80%; 
+  height: auto;
+  object-fit: contain;
+  
+  /* Filtros para limpiar impurezas del fondo negro de la foto */
+  mix-blend-mode: screen;
+  filter: contrast(1.8) brightness(1.1);
+}
+
+/* Desactivamos la clase vieja por si quedó algún rastro */
+.gfl-floating-logo {
+  display: none !important;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .interface-container {
+    flex-direction: column;
+  }
+  .login-panel {
+    height: 55vh;
+    padding: 20px;
+  }
+  .logo-display-panel {
+    height: 45vh;
+    margin-left: 0;
+    clip-path: none;
+  }
+  .logo-wrapper {
+    clip-path: none;
+    transform: none;
+    padding-left: 0;
+  }
+  .gfl-tactical-logo {
+    width: 60%;
+  }
+}
+/* EL EMBLEMA: CON TAMAÑO REGULABLE Y ANIMACIÓN CONSTANTE ACTIVADA */
+.gfl-tactical-logo {
+  /* Mantiene tu tamaño regulable (puedes cambiar 80% por el tamaño que prefieras) */
+  width: 80%; 
+  height: auto;
+  object-fit: contain;
+  
+  /* Filtros de fusión de color */
+  mix-blend-mode: screen;
+  filter: contrast(1.8) brightness(1.1);
+
+  /* 🔥 ¡AQUÍ ACTIVAMOS LA ANIMACIÓN CONSTANTE SUAVE! */
+  animation: floatTactico 4.5s ease-in-out infinite;
+}
+
+/* DECLARACIÓN DEL MOVIMIENTO SUAVE DE ARRIBA A ABAJO */
+@keyframes floatTactico {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px); /* Sube 15 píxeles sutilmente a la mitad del ciclo */
+  }
+  100% {
+    transform: translateY(0px); /* Regresa suavemente a su posición base */
+  }
+}
