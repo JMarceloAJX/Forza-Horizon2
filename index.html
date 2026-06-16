@@ -8,7 +8,43 @@
   <link rel="stylesheet" href="estilos.css"/>
 </head>
 <body>
+
+  <!-- PANTALLA DE INICIO (SPLASH SCREEN) TOTAL -->
+  <div id="gflSplash" class="splash-screen">
+    <div class="interface-container">
+      
+      <!-- PANEL IZQUIERDO: EL RECUADRO AMARILLO CON TEXTOS -->
+      <div class="login-panel">
+        <div class="gfl-logo-box">
+          <h1>FORZA TUS HORIZONTES</h1>
+          <p class="sub-log">IOP WIKI // SECURE NETWORK ENTRY PROTOCOL</p>
+          
+          <button id="startLoadBtn" class="splash-btn" onclick="startGflLoading()">INICIAR SESIÓN</button>
+          
+          <!-- Barra de carga interna -->
+          <div id="loadingProgressContainer" class="progress-container" style="display: none;">
+            <div class="progress-bar-wrapper">
+              <div id="gflProgressBar" class="progress-bar"></div>
+            </div>
+            <div class="loading-status-text">
+              <span id="loadingStatus">INICIALIZANDO CONEXIÓN ENCRIPTADA...</span> 
+              <span id="loadingPercentage">0%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL DERECHO: LA FLECHA TÁCTICA CON LA IMAGEN CORREGIDA -->
+      <div class="logo-display-panel">
+        <div class="logo-wrapper">
+          <img src="img/GK.jpg" class="gfl-tactical-logo" alt="Griffin & Kryuger">
+        </div>
+      </div>
+
+    </div>
+  </div>
   
+  <!-- NAV ESTILO GIRLS' FRONTLINE -->
   <nav>
     <div class="logo-area">
       <a class="logo" href="#">Forza tus horizontes</a>
@@ -24,6 +60,7 @@
     </div>
   </nav>
 
+  <!-- SECCIÓN SOLICITUDES -->
   <section class="request-section">
     <div class="section-title-sub">¿No encuentras un producto específico?</div>
     <p class="section-desc">Escribe la marca o modelo tecnológico que buscas y generaremos una orden de importación inmediata:</p>
@@ -34,12 +71,14 @@
     <p id="requestResponse" class="terminal-log"></p>
   </section>
 
+  <!-- SEARCH BAR -->
   <section class="search-section">
     <div class="search-wrapper">
       <input type="text" id="searchInput" placeholder="Buscar productos por nombre, marcas, vehículos, armamento o especificación..." onkeyup="searchProducts()">
     </div>
   </section>
 
+  <!-- CATEGORÍAS COMPACTAS -->
   <div class="cat-grid">
     <button class="cat-pill active" onclick="filterCat(this,'todos')">Todos los Artículos</button>
     <button class="cat-pill" onclick="filterCat(this,'valor')">Artículos de Gran Valor</button>
@@ -48,6 +87,7 @@
     <button class="cat-pill" onclick="filterCat(this,'computadora')">Hardware y Componentes</button>
   </div>
 
+  <!-- SECCIÓN DE PRODUCTOS -->
   <section class="products" id="productos">
     <div class="products-header">
       <h2>Productos destacados en inventario</h2>
@@ -56,6 +96,7 @@
     <div class="products-grid" id="productsGrid"></div>
   </section>
 
+  <!-- PIE DE PÁGINA -->
   <footer>
     <div class="footer-status-log">
       CONEXIÓN CIFRADA TLS 1.3 // Estos artículos están aprobados y la app está en fase beta, gracias por su preferencia.
@@ -63,6 +104,7 @@
     <p class="footer-copyright">Forza tus horizontes International Trade S.A. © 2026 · App en Fase Beta Certificada bajo Estándar IOP</p>
   </footer>
 
+  <!-- CARRITO LATERAL -->
   <div class="cart-backdrop" id="cartBackdrop" onclick="toggleCart()"></div>
   <div class="cart-overlay" id="cartOverlay">
     <div class="cart-header">
@@ -81,8 +123,10 @@
     </div>
   </div>
 
+  <!-- TOAST NOTIFICACIÓN -->
   <div class="toast" id="toast"></div>
 
+  <!-- MODAL DEL TROLLEO AL COMPRAR -->
   <div class="fake-modal-backdrop" id="fakeModalBackdrop">
     <div class="fake-modal">
       <div class="modal-alert-header">TRANSACCIÓN PROCESADA</div>
