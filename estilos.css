@@ -1,11 +1,15 @@
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
 
 :root {
-  --bg-dark: #121212;       /* Fondo oscuro de la interfaz GFL */
-  --bg-panel: #1a1a1a;      /* Paneles de datos */
+  --bg-dark: #121212;       
+  --bg-panel: #1a1a1a;      
   --bg-input: #0d0d0d;
-  --text-main: #b3b3b3;     /* Gris de los textos secundarios de la wiki */
-  --brand-color: #f3a804;   /* El Amarillo/Ámbar exacto del logo de GFL */
+  --text-main: #b3b3b3;     
+  --brand-color: #f3a804;   
   --gfl-line: #262626;
   --border-color: #2a2a2a;  
   --font-main: 'Rajdhani', sans-serif;
@@ -19,25 +23,15 @@ body {
   letter-spacing: 0.02em;
 }
 
-.top-status-bar {
-  background: var(--brand-color);
-  color: #000;
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 6px 5%;
-  text-align: center;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
 /* NAV ESTILO GIRLS' FRONTLINE */
 nav {
   background: #161616;
   border-bottom: 3px solid var(--brand-color);
   padding: 0 5%;
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between;
   height: 80px;
-  /* Fondo sutil con líneas diagonales tácticas como la wiki */
   background-image: linear-gradient(135deg, #1a1a1a 25%, transparent 25%, transparent 50%, #1a1a1a 50%, #1a1a1a 75%, transparent 75%, transparent);
   background-size: 40px 40px;
 }
@@ -60,7 +54,6 @@ nav {
   border-left: 4px solid var(--brand-color);
   padding: 1.5rem;
   border: 1px solid var(--border-color);
-  border-left: 4px solid var(--brand-color);
 }
 .section-title-sub { color: #fff; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.2rem; text-transform: uppercase; }
 .section-desc { font-size: 0.9rem; margin-bottom: 1rem; color: #888; }
@@ -157,7 +150,7 @@ nav {
   padding: 14px; font-size: 1rem; font-weight: 700; cursor: pointer; text-transform: uppercase;
 }
 
-/* MODAL DEL TROLLEO */
+/* MODAL */
 .fake-modal-backdrop {
   display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 500;
   align-items: center; justify-content: center; padding: 20px;
@@ -177,10 +170,8 @@ nav {
 .cart-backdrop.open { display: block; }
 .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(80px); background: #1f1f1f; color: var(--brand-color); padding: 0.6rem 1.5rem; font-size: 0.9rem; font-weight: 600; border: 1px solid var(--brand-color); opacity: 0; transition: all .3s; z-index: 300; }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-footer { text-align: center; padding: 30px; font-size: 0.85rem; color: #555; border-top: 1px solid var(--border-color); margin-top: 40px; text-transform: uppercase; }
 
-@media(max-width: 768px) { .cart-overlay { width: 100%; right: -100%; } }
-/* Busca la regla anterior de footer y reemplázala por esta estructura limpia */
+/* FOOTER */
 footer {
   text-align: center;
   padding: 40px 5% 30px 5%;
@@ -188,7 +179,6 @@ footer {
   margin-top: 40px;
   background: #141414;
 }
-
 .footer-status-log {
   color: var(--brand-color);
   font-size: 0.85rem;
@@ -202,125 +192,77 @@ footer {
   display: inline-block;
   max-width: 90%;
 }
+.footer-copyright { font-size: 0.8rem; color: #555; text-transform: uppercase; letter-spacing: 0.5px; }
 
-.footer-copyright {
-  font-size: 0.8rem;
-  color: #555;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
+
 /* ==========================================================================
-   PANTALLA DE INTRO Y CARGA ESTILO GIRLS' FRONTLINE 
+   PANTALLA DE INICIO COMPLETA CON PUNTA SUPERPUESTA (Z-INDEX FIX)
    ========================================================================== */
 .splash-screen {
   position: fixed;
   inset: 0;
-  background-color: #0d0d0d;
+  background-color: #0b0b0b;
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: opacity 0.5s ease, visibility 0.5s;
-  background-image: linear-gradient(135deg, #121212 25%, transparent 25%, transparent 50%, #121212 50%, #121212 75%, transparent 75%, transparent);
+  background-image: linear-gradient(135deg, #111 25%, transparent 25%, transparent 50%, #111 50%, #111 75%, transparent 75%, transparent);
   background-size: 60px 60px;
-  /* DISEÑO DIVIDIDO (TEXTO A LA IZQUIERDA, LOGO A LA DERECHA) */
-.layout-split {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 30px;
-  max-width: 750px; /* Ampliamos el ancho para que quepa el logo de forma elegante */
-  width: 95%;
-  text-align: left; /* Alineado táctico a la izquierda */
 }
 
-.splash-left {
-  flex: 1;
+.interface-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
 }
 
-.splash-right {
-  flex: 0 0 200px; /* Espacio fijo reservado para el logo */
+.login-panel {
+  flex: 45;
+  background: rgba(12, 12, 12, 0.95);
+  padding: 0 4% 0 6%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-}
-
-/* LOGO ANIMADO FLOTANTE CONSTANTE */
-.gfl-floating-logo {
-  width: 100%;
-  max-width: 180px;
-  height: auto;
-  border-radius: 4px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
-  border: 1px solid #2a2a2a;
+  align-items: flex-start;
+  position: relative;
   
-  /* Lógica de la animación: 4 segundos de duración, bucle infinito, aceleración suave al inicio y fin */
-  animation: floatSuave 4s ease-in-out infinite; 
+  /* Capa baja para dejar pasar la punta de la flecha amarilla por encima */
+  z-index: 1; 
 }
 
-/* DECLARACIÓN DEL MOVIMIENTO ARRIBA Y ABAJO */
-@keyframes floatSuave {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-12px); /* Sube ligeramente 12 píxeles a la mitad del ciclo */
-  }
-  100% {
-    transform: translateY(0px); /* Regresa suavemente a su posición original */
-  }
+.gfl-logo-box {
+  border: 3px solid var(--brand-color);
+  padding: 40px 35px;
+  background: rgba(18, 18, 18, 0.85);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+  width: 100%;
+  max-width: 460px;
 }
-
-/* AJUSTE PARA PANTALLAS MÓVILES */
-@media (max-width: 600px) {
-  .layout-split {
-    flex-direction: column-reverse; /* En celulares pone el logo arriba del texto automáticamente */
-    text-align: center;
-    gap: 20px;
-  }
-  .splash-right {
-    max-width: 130px;
-  }
-}
-}
-
-.splash-content {
-  text-align: center;
-  width: 90%;
-  max-width: 500px;
-  padding: 30px;
-  background: #161616;
-  border: 1px solid #2a2a2a;
-  border-top: 4px solid var(--brand-color);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
 .gfl-logo-box h1 {
-  font-size: 2.2rem;
-  color: #fff;
-  letter-spacing: 2px;
-  font-weight: 700;
-  margin-bottom: 5px;
+  font-size: 2.3rem;
+  margin-bottom: 8px;
+  letter-spacing: 1.5px;
+  color: #ffffff;
 }
-
 .sub-log {
   font-size: 0.8rem;
+  margin-bottom: 25px;
   color: var(--brand-color);
   font-weight: 600;
-  letter-spacing: 1px;
-  margin-bottom: 35px;
 }
 
-/* Botón de Entrada */
 .splash-btn {
   background: transparent;
   color: var(--brand-color);
   border: 2px solid var(--brand-color);
-  padding: 12px 30px;
-  font-size: 1rem;
+  padding: 12px 28px;
+  font-size: 0.95rem;
   font-weight: 700;
   cursor: pointer;
-  letter-spacing: 1px;
   text-transform: uppercase;
   transition: all 0.2s ease;
 }
@@ -330,258 +272,65 @@ footer {
   box-shadow: 0 0 15px rgba(243, 168, 4, 0.4);
 }
 
-/* Barra de carga */
-.progress-container {
-  margin-top: 20px;
-}
+.progress-container { margin-top: 20px; width: 100%; }
+.progress-bar-wrapper { width: 100%; height: 8px; background: #0d0d0d; border: 1px solid #2a2a2a; padding: 1px; }
+.progress-bar { height: 100%; width: 0%; background: var(--brand-color); }
+.loading-status-text { display: flex; justify-content: space-between; margin-top: 8px; font-size: 0.75rem; color: #888; font-weight: 600; text-transform: uppercase; }
 
-.progress-bar-wrapper {
-  width: 100%;
-  height: 8px;
-  background: #0d0d0d;
-  border: 1px solid #2a2a2a;
-  padding: 1px;
-  overflow: hidden;
-}
-
-.progress-bar {
-  height: 100%;
-  width: 0%;
-  background: var(--brand-color);
-  transition: width 0.1s linear;
-}
-
-.loading-status-text {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 8px;
-  font-size: 0.8rem;
-  color: #888;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-#loadingPercentage {
-  color: var(--brand-color);
-}
-/* ==========================================================================
-   ESTRUCTURA CORREGIDA: MÁS ESPACIO PARA EL LOGO (OCUPA EL DOBLE)
-   ========================================================================== */
-.layout-split {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-  max-width: 900px; /* Ampliamos el contenedor para que quepan holgadamente ambos lados */
-  width: 95%;
-  text-align: left;
-}
-
-.splash-left {
-  flex: 1.2; /* El texto mantiene su espacio controlado */
-}
-
-.splash-right {
-  flex: 1; /* ¡Aquí está el cambio! Ahora el lado derecho tiene casi el mismo peso que el izquierdo, ocupando el doble de antes */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* LOGO AMPLIADO CON EFECTO DE FUSIÓN */
-.gfl-floating-logo {
-  width: 100%;
-  max-width: 320px; /* Incrementamos el tamaño máximo para que se vea gigante y llene el espacio */
-  height: auto;
-  border-radius: 6px;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
-  border: 1px solid #2a2a2a;
-  
-  /* Mantiene el truco para mimetizar los bordes blancos de la foto con tu fondo oscuro */
-  mix-blend-mode: screen; 
-  
-  /* Animación suave arriba y abajo */
-  animation: floatSuave 4s ease-in-out infinite; 
-}
-
-/* DECLARACIÓN DEL MOVIMIENTO ARRIBA Y ABAJO */
-@keyframes floatSuave {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-15px); /* Sube un toque más para acompañar el nuevo tamaño */
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-/* AJUSTE PARA CELULARES (Se apilan uno abajo del otro para que no se rompa en pantallas chicas) */
-@media (max-width: 768px) {
-  .layout-split {
-    flex-direction: column-reverse;
-    text-align: center;
-    gap: 30px;
-  }
-  .gfl-floating-logo {
-    max-width: 220px;
-  }
-}
-/* ==========================================================================
-   INTERFAZ TÁCTICA DEFINITIVA: CAJA IZQUIERDA Y LOGO REGULABLE EN GRANDE
-   ========================================================================== */
-
-/* Contenedor total de borde a borde */
-.interface-container {
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  gap: 0;
-  overflow: hidden;
-}
-
-/* PANEL IZQUIERDO: FONDO GENERAL OSCURO */
-.login-panel {
-  flex: 52;
-  background: rgba(12, 12, 12, 0.96);
-  padding: 0 5% 0 8%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  z-index: 1;
-}
-
-/* RECUADRO AMARILLO INTERNO (TEXTOS COMODOS) */
-.gfl-logo-box {
-  border: 3px solid #ffb300;
-  padding: 45px 40px;
-  background: rgba(16, 16, 16, 0.7);
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
-  max-width: 500px;
-  width: 100%;
-}
-
-/* Título imponente */
-.gfl-logo-box h1 {
-  font-size: 2.5rem; /* Más grande y legible */
-  margin-top: 0;
-  margin-bottom: 10px;
-  letter-spacing: 2px;
-  color: #ffffff;
-}
-
-.sub-log {
-  font-size: 0.85rem;
-  margin-bottom: 30px;
-  color: #ffb300;
-}
-
-/* PANEL DERECHO: LA GRAN FLECHA AMARILLA BASE */
+/* PANEL DE FONDO: TRAIDO AL FRENTE (Z-INDEX 3) */
 .logo-display-panel {
-  flex: 48;
-  background: #ffb300; /* Color amarillo de la franja */
+  flex: 55;
+  background: var(--brand-color); 
   position: relative;
-  z-index: 2;
   
-  /* Corte en punta de flecha limpia (ajustada para que no sea esquina a esquina) */
-  clip-path: polygon(40% 0%, 100% 0%, 100% 100%, 40% 100%, 0% 50%);
+  /* Forzamos a la flecha amarilla a dibujarse ENCIMA del recuadro negro */
+  z-index: 3; 
+  
+  /* El hachazo de la flecha táctica */
+  clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 50%);
   margin-left: -12vw; 
 }
 
-/* RECUADRO INTERNO OSCURO: Hace que la franja amarilla se vea bien gruesa */
+/* MARCO INTERNO OSCURO DE LA FLECHA */
 .logo-wrapper {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #0f0f0f; /* El fondo negro de la sección del logo */
-  
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  background: #0d0d0d;
+  clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 50%);
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding-left: 20%; /* Centra el escudo tirándolo un poco a la derecha */
-
-  /* Mismo corte de flecha */
-  clip-path: polygon(40% 0%, 100% 0%, 100% 100%, 40% 100%, 0% 50%);
-  
-  /* Ajuste de escala: Al achicar el fondo oscuro interno, la franja amarilla se vuelve GRUESA */
-  transform: scaleX(0.94) scaleY(0.97);
-  transform-origin: right center;
+  justify-content: center;
 }
 
-/* EL EMBLEMA: ¡AQUÍ REGULAS EL TAMANO DE LA FOTO AL MILÍMETRO! */
+/* EL LOGO GIGANTE E INTACTO (HEREDA CAPA SUPERIOR DEL CONTENEDOR) */
 .gfl-tactical-logo {
-  /* 🛠️ MODIFICA ESTE PORCENTAJE PARA CONTROLAR EL TAMANO:
-     Al 80% se va a ver gigante llenando el espacio pero sin salirse de los bordes.
-     Si lo notas muy grande, bájalo a 70% o 75%. Si lo quieres inmenso, súbelo a 90%. */
-  width: 80%; 
-  height: auto;
+  height: 96vh;
+  width: auto;
+  max-width: none; 
   object-fit: contain;
-  
-  /* Filtros para limpiar impurezas del fondo negro de la foto */
+  position: relative;
+  z-index: 20;
+  margin-left: 20%; 
   mix-blend-mode: screen;
-  filter: contrast(1.8) brightness(1.1);
+  filter: contrast(1.5) brightness(1.1);
+  animation: floatTactico 5s ease-in-out infinite;
 }
 
-/* Desactivamos la clase vieja por si quedó algún rastro */
-.gfl-floating-logo {
-  display: none !important;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .interface-container {
-    flex-direction: column;
-  }
-  .login-panel {
-    height: 55vh;
-    padding: 20px;
-  }
-  .logo-display-panel {
-    height: 45vh;
-    margin-left: 0;
-    clip-path: none;
-  }
-  .logo-wrapper {
-    clip-path: none;
-    transform: none;
-    padding-left: 0;
-  }
-  .gfl-tactical-logo {
-    width: 60%;
-  }
-}
-/* EL EMBLEMA: CON TAMAÑO REGULABLE Y ANIMACIÓN CONSTANTE ACTIVADA */
-.gfl-tactical-logo {
-  /* Mantiene tu tamaño regulable (puedes cambiar 80% por el tamaño que prefieras) */
-  width: 80%; 
-  height: auto;
-  object-fit: contain;
-  
-  /* Filtros de fusión de color */
-  mix-blend-mode: screen;
-  filter: contrast(1.8) brightness(1.1);
-
-  /* 🔥 ¡AQUÍ ACTIVAMOS LA ANIMACIÓN CONSTANTE SUAVE! */
-  animation: floatTactico 4.5s ease-in-out infinite;
-}
-
-/* DECLARACIÓN DEL MOVIMIENTO SUAVE DE ARRIBA A ABAJO */
 @keyframes floatTactico {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-15px); /* Sube 15 píxeles sutilmente a la mitad del ciclo */
-  }
-  100% {
-    transform: translateY(0px); /* Regresa suavemente a su posición base */
-  }
+  0% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-10px) scale(1.01); }
+  100% { transform: translateY(0px) scale(1); }
+}
+
+/* CONTROL RESPONSIVO */
+@media (max-width: 768px) {
+  .cart-overlay { width: 100%; right: -100%; }
+  .interface-container { flex-direction: column; }
+  .login-panel { height: 55vh; padding: 20px; align-items: center; flex: none; }
+  .logo-display-panel { height: 45vh; margin-left: 0; clip-path: none; flex: none; width: 100%; }
+  .logo-wrapper { clip-path: none; top:0; left:0; right:0; bottom:0; }
+  .gfl-tactical-logo { height: 42vh; margin-left: 0; }
 }
