@@ -245,3 +245,55 @@ window.addEventListener('DOMContentLoaded', () => {
   renderProducts('todos');
   updateCartUI();
 });
+// ==========================================================================
+// CONTROLADOR DE LOGISTICA Y CARGA TÁCTICA GFL
+// ==========================================================================
+function startGflLoading() {
+  // Esconder botón de inicio y mostrar barra de progreso
+  document.getElementById('startLoadBtn').style.display = 'none';
+  const progressContainer = document.getElementById('loadingProgressContainer');
+  progressContainer.style.display = 'block';
+
+  const progressBar = document.getElementById('gflProgressBar');
+  const statusText = document.getElementById('loadingStatus');
+  const percentageText = document.getElementById('loadingPercentage');
+  
+  let progress = 0;
+  
+  // Lista de logs militares de carga al estilo Girls' Frontline
+  const loadingLogs = [
+    { limit: 15, text: "ACCEDIENDO AL SERVIDOR CENTRAL IOP..." },
+    { limit: 35, text: "AUTENTICANDO CREDENCIALES DE GRIFFIN & KRYUGER..." },
+    { limit: 55, text: "DESENCRIPTANDO BASE DE DATOS PROTOCOLO DE RED..." },
+    { limit: 75, text: "DESPLEGANDO ARCHIVOS DE INVENTARIO TÁCTICO..." },
+    { limit: 90, text: "ESTABILIZANDO CONEXIÓN CIFRADA TLS 1.3..." },
+    { limit: 100, text: "SISTEMA CONFIGURADO. ENTRADA AUTORIZADA." }
+  ];
+
+  const interval = setInterval(() => {
+    progress += Math.floor(Math.random() * 4) + 1; // Incrementos aleatorios realistas
+    if (progress > 100) progress = 100;
+
+    // Actualizar barra y porcentaje
+    progressBar.style.width = progress + '%';
+    percentageText.innerText = progress + '%';
+
+    // Cambiar logs de estado según el progreso actual
+    const currentLog = loadingLogs.find(log => progress <= log.limit);
+    if (currentLog) {
+      statusText.innerText = currentLog.text;
+    }
+
+    // Al completar la simulación de carga
+    if (progress === 100) {
+      clearInterval(interval);
+      setTimeout(() => {
+        const splash = document.getElementById('gflSplash');
+        splash.style.opacity = '0';
+        setTimeout(() => {
+          splash.style.visibility = 'hidden';
+        }, 500); // Remueve la pantalla tras el fundido
+      }, 600); // Breve pausa de confirmación al llegar al 100%
+    }
+  }, 80); // Velocidad de la animación
+}
